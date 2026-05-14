@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sathwik Konijeti | Cybersecurity Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&family=Bricolage+Grotesque:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #080b10; --surface: #0f1318; --surface2: #161c24;
+  --border: #1e2733; --border2: #2a3540;
+  --accent: #38bdf8; --accent2: #818cf8; --accent3: #34d399;
+  --text: #e2e8f0; --text2: #94a3b8; --text3: #64748b;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--text);
+  font-family: 'DM Sans', sans-serif; font-size: 16px;
+  line-height: 1.6; overflow-x: hidden;
+}
+body::before {
+  content: ''; position: fixed; inset: 0;
+  background-image: linear-gradient(rgba(56,189,248,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(56,189,248,0.025) 1px, transparent 1px);
+  background-size: 72px 72px; pointer-events: none; z-index: 0;
+}
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 1.1rem 3.5rem;
+  display: flex; justify-content: space-between; align-items: center;
+  background: rgba(8,11,16,0.9); backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo { font-family: 'DM Mono', monospace; font-size: 0.85rem; color: var(--accent); letter-spacing: 0.04em; }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a { color: var(--text2); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+.nav-links a:hover { color: var(--accent); }
+.wrapper { position: relative; z-index: 1; max-width: 1080px; margin: 0 auto; padding: 0 3rem; }
+.hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding-top: 5rem; }
+.hero-tag { font-family: 'DM Mono', monospace; font-size: 0.8rem; color: var(--accent); letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 1.25rem; opacity: 0; animation: fadeUp 0.5s 0.2s forwards; }
+.hero h1 { font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(3.2rem, 7vw, 6rem); font-weight: 800; line-height: 1.0; letter-spacing: -0.03em; margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 0.5s 0.35s forwards; }
+.hero h1 .outline { color: transparent; -webkit-text-stroke: 1.5px rgba(56,189,248,0.5); }
+.hero-desc { font-size: 1.1rem; color: var(--text2); max-width: 520px; margin-bottom: 2rem; line-height: 1.75; opacity: 0; animation: fadeUp 0.5s 0.5s forwards; }
+.hero-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2.5rem; opacity: 0; animation: fadeUp 0.5s 0.6s forwards; }
+.pill { font-family: 'DM Mono', monospace; font-size: 0.72rem; padding: 0.35rem 0.9rem; border: 1px solid var(--border2); border-radius: 100px; color: var(--text2); letter-spacing: 0.03em; transition: all 0.2s; }
+.pill:hover { border-color: var(--accent); color: var(--accent); }
+.hero-cta { display: flex; gap: 1rem; opacity: 0; animation: fadeUp 0.5s 0.7s forwards; }
+.btn { font-family: 'DM Mono', monospace; font-size: 0.78rem; padding: 0.8rem 1.8rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; border-radius: 6px; transition: all 0.2s; cursor: pointer; border: none; display: inline-block; }
+.btn-primary { background: var(--accent); color: #080b10; font-weight: 500; }
+.btn-primary:hover { background: #7dd3fc; transform: translateY(-2px); }
+.btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--border2); }
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+section { padding: 5rem 0; }
+.section-eyebrow { font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--accent); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.75rem; }
+.section-title { font-family: 'Bricolage Grotesque', sans-serif; font-size: 2.4rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 2.5rem; line-height: 1.15; }
+.about-grid { display: grid; grid-template-columns: 3fr 2fr; gap: 4rem; align-items: start; }
+.about-text p { color: var(--text2); margin-bottom: 1rem; font-size: 1rem; line-height: 1.8; }
+.about-text p strong { color: var(--text); }
+.stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.stat-card { background: var(--surface); border: 1px solid var(--border); padding: 1.4rem; border-radius: 8px; transition: border-color 0.2s; }
+.stat-card:hover { border-color: var(--accent); }
+.stat-number { font-family: 'Bricolage Grotesque', sans-serif; font-size: 2rem; font-weight: 800; color: var(--accent); line-height: 1; margin-bottom: 0.4rem; }
+.stat-label { font-size: 0.78rem; color: var(--text3); line-height: 1.4; }
+.projects-grid { display: grid; gap: 1.25rem; }
+.project-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.75rem 2rem; transition: all 0.2s; }
+.project-card:hover { border-color: var(--border2); background: var(--surface2); transform: translateY(-2px); }
+.project-card.featured { border-color: rgba(56,189,248,0.25); background: linear-gradient(135deg, var(--surface) 0%, rgba(56,189,248,0.04) 100%); }
+.featured-label { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--accent); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.5rem; display: block; }
+.project-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 0.9rem; }
+.project-title { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--text); margin-bottom: 0.2rem; }
+.project-org { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--accent); letter-spacing: 0.04em; }
+.status-badge { font-family: 'DM Mono', monospace; font-size: 0.68rem; padding: 0.28rem 0.75rem; border-radius: 100px; white-space: nowrap; flex-shrink: 0; }
+.status-done { background: rgba(52,211,153,0.1); color: var(--accent3); border: 1px solid rgba(52,211,153,0.25); }
+.status-wip { background: rgba(56,189,248,0.1); color: var(--accent); border: 1px solid rgba(56,189,248,0.25); }
+.project-desc { font-size: 0.95rem; color: var(--text2); line-height: 1.75; margin-bottom: 1.25rem; }
+.stack { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+.stack span { font-family: 'DM Mono', monospace; font-size: 0.68rem; padding: 0.22rem 0.6rem; background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; color: var(--text3); }
+.lab-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+.lab-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem; transition: all 0.2s; }
+.lab-card:hover { border-color: var(--accent2); transform: translateY(-2px); }
+.lab-icon { font-size: 1.6rem; margin-bottom: 0.75rem; }
+.lab-name { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+.lab-desc { font-size: 0.875rem; color: var(--text2); line-height: 1.65; }
+.skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+.skill-group { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem; }
+.skill-group-name { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1rem; }
+.skill-chips { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+.chip { font-size: 0.82rem; color: var(--text2); padding: 0.28rem 0.7rem; background: var(--surface2); border-radius: 4px; border: 1px solid var(--border); }
+.certs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 2.5rem; }
+.cert-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.2rem 1.5rem; display: flex; align-items: center; gap: 1rem; transition: all 0.2s; }
+.cert-card:hover { border-color: var(--accent3); transform: translateX(3px); }
+.cert-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent3); flex-shrink: 0; }
+.cert-name { font-size: 0.875rem; font-weight: 600; color: var(--text); margin-bottom: 0.2rem; }
+.cert-issuer { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--text3); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+.contact-text p { color: var(--text2); line-height: 1.8; margin-bottom: 1rem; font-size: 1rem; }
+.contact-links { display: flex; flex-direction: column; gap: 0.85rem; }
+.contact-link { display: flex; flex-direction: column; padding: 1.1rem 1.4rem; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; text-decoration: none; transition: all 0.2s; }
+.contact-link:hover { border-color: var(--accent); transform: translateX(4px); }
+.contact-link-label { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--text3); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.2rem; }
+.contact-link-val { font-size: 0.9rem; font-weight: 500; color: var(--text); }
+.contact-link:hover .contact-link-val { color: var(--accent); }
+footer { position: relative; z-index: 1; text-align: center; padding: 2rem; border-top: 1px solid var(--border); font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--text3); letter-spacing: 0.04em; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.fade-in { opacity: 0; transform: translateY(16px); transition: opacity 0.55s ease, transform 0.55s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">SK // CYBER</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#lab">Lab</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="wrapper">
+
+  <div class="hero">
+    <p class="hero-tag">Cybersecurity Engineer</p>
+    <h1>Sathwik<br><span class="outline">Konijeti</span></h1>
+    <p class="hero-desc">Enthusiastic, fast learner, and reliable. I build AI-powered security tools, automate SOC workflows, and find what is broken before someone else does.</p>
+    <div class="hero-pills">
+      <span class="pill">M.S. Cybersecurity</span>
+      <span class="pill">AI Security</span>
+      <span class="pill">Penetration Testing</span>
+      <span class="pill">SOC Automation</span>
+      <span class="pill">Intrusion Detection</span>
+      <span class="pill">Digital Forensics</span>
+    </div>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="mailto:sathwikkms@gmail.com" class="btn btn-ghost">Get In Touch</a>
+    </div>
+  </div>
+
+  <section id="about">
+    <p class="section-eyebrow">01 / About</p>
+    <h2 class="section-title">Who I Am</h2>
+    <div class="about-grid fade-in">
+      <div class="about-text">
+        <p>I am a <strong>Cybersecurity M.S. graduate from Grand Valley State University</strong> with a background in Aeronautical Engineering. That combination gives me a perspective most security engineers do not have. I understand hardware and embedded systems, not just software.</p>
+        <p>I build things that work. My capstone project is a full <strong>AI-powered Intrusion Detection System</strong> using machine learning, SHAP explainability, and the Anthropic Claude API to explain every alert in plain English to security analysts.</p>
+        <p>I am an introvert until I am comfortable, at which point I become the person landing jokes nobody asked for but everyone appreciated. I pick up new tools fast, document everything, and do not close a ticket until the problem is actually solved.</p>
+        <p>Currently building a home lab, chasing certifications, and looking for roles where I can do real security work from day one.</p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-number">97.6%</div><div class="stat-label">xIDS Model F1 Score</div></div>
+        <div class="stat-card"><div class="stat-number">40%</div><div class="stat-label">SOC Review Time Reduced</div></div>
+        <div class="stat-card"><div class="stat-number">7</div><div class="stat-label">Attack Categories Detected</div></div>
+        <div class="stat-card"><div class="stat-number">4+</div><div class="stat-label">Active Certifications</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <p class="section-eyebrow">02 / Projects</p>
+    <h2 class="section-title">What I Have Built</h2>
+    <div class="projects-grid">
+
+      <div class="project-card featured fade-in">
+        <span class="featured-label">Featured Project</span>
+        <div class="project-header">
+          <div>
+            <div class="project-title">xIDS: Explainable Intrusion Detection System</div>
+            <div class="project-org">M.S. Capstone + Portfolio Project, GVSU</div>
+          </div>
+          <span class="status-badge status-done">Complete</span>
+        </div>
+        <p class="project-desc">An AI-powered network intrusion detection system that does not just flag attacks, it explains why. Tiered detection pipeline using Isolation Forest and XGBoost on CICIDS2017 traffic data. Integrated AbuseIPDB for IOC enrichment and the Anthropic Claude API via the anthropic Python SDK (client.messages.create) to generate plain English analyst summaries from SHAP feature attributions. Deployed as a FastAPI REST API with JWT auth, RBAC, and a React dashboard.</p>
+        <div class="stack">
+          <span>Python</span><span>XGBoost</span><span>Isolation Forest</span><span>SHAP</span>
+          <span>Anthropic Claude API</span><span>FastAPI</span><span>PostgreSQL</span>
+          <span>JWT / RBAC</span><span>AbuseIPDB</span><span>Tines SOAR</span>
+        </div>
+      </div>
+
+      <div class="project-card fade-in">
+        <div class="project-header">
+          <div>
+            <div class="project-title">Cross-Platform HPC Cluster</div>
+            <div class="project-org">Personal Project</div>
+          </div>
+          <span class="status-badge status-wip">In Progress</span>
+        </div>
+        <p class="project-desc">Building a High Performance Computing cluster across Windows and Mac OS X environments using MPI for inter-node communication. Working through cross-platform integration challenges for seamless cluster connectivity and distributed workload execution.</p>
+        <div class="stack">
+          <span>MPI</span><span>Windows</span><span>Mac OS X</span><span>Distributed Systems</span><span>Python</span>
+        </div>
+      </div>
+
+      <div class="project-card fade-in">
+        <div class="project-header">
+          <div>
+            <div class="project-title">Web Application Penetration Testing</div>
+            <div class="project-org">Ethical Hacking Course, GVSU</div>
+          </div>
+          <span class="status-badge status-done">Complete</span>
+        </div>
+        <p class="project-desc">Black-box penetration test against OWASP Juice Shop using Burp Suite and Kali Linux. Chained SQL injection to broken authentication to XSS for privilege escalation across OWASP Top 10 vulnerability categories. Delivered structured findings report with CVSS scoring and remediation recommendations.</p>
+        <div class="stack">
+          <span>Burp Suite</span><span>Kali Linux</span><span>OWASP ZAP</span>
+          <span>SQL Injection</span><span>XSS</span><span>CVSS</span>
+        </div>
+      </div>
+
+      <div class="project-card fade-in">
+        <div class="project-header">
+          <div>
+            <div class="project-title">Android Device Forensic Investigation</div>
+            <div class="project-org">Digital Forensics Course, GVSU</div>
+          </div>
+          <span class="status-badge status-done">Complete</span>
+        </div>
+        <p class="project-desc">Investigated a Metasploit-compromised Android device using Magnet Axiom and Autopsy. Identified IOCs including modified file system permissions, database record anomalies, and steganographic artifacts. Produced formal IR report with evidence chain of custody and timeline analysis.</p>
+        <div class="stack">
+          <span>Magnet Axiom</span><span>Autopsy</span><span>Metasploit</span>
+          <span>Steganography</span><span>Digital Forensics</span><span>IR Reporting</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="lab">
+    <p class="section-eyebrow">03 / Lab</p>
+    <h2 class="section-title">Home Lab Setup</h2>
+    <div class="lab-grid fade-in">
+      <div class="lab-card">
+        <div class="lab-icon">🖥</div>
+        <div class="lab-name">Proxmox VE</div>
+        <div class="lab-desc">Bare-metal hypervisor running multiple VMs for security testing, network simulation, and isolated malware analysis environments.</div>
+      </div>
+      <div class="lab-card">
+        <div class="lab-icon">🦜</div>
+        <div class="lab-name">Parrot Security OS</div>
+        <div class="lab-desc">Primary attack machine for penetration testing, vulnerability assessment, and security research. Lightweight and purpose-built for security work.</div>
+      </div>
+      <div class="lab-card">
+        <div class="lab-icon">🔗</div>
+        <div class="lab-name">HPC Cluster Nodes</div>
+        <div class="lab-desc">Windows and Mac OS X nodes configured for cross-platform MPI communication and distributed computing experiments.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <p class="section-eyebrow">04 / Skills</p>
+    <h2 class="section-title">Technical Stack</h2>
+    <div class="skills-grid fade-in">
+      <div class="skill-group">
+        <div class="skill-group-name">Security Operations</div>
+        <div class="skill-chips">
+          <span class="chip">Splunk SPL</span><span class="chip">Tines SOAR</span>
+          <span class="chip">Alert Triage</span><span class="chip">IOC Enrichment</span>
+          <span class="chip">AbuseIPDB</span><span class="chip">MITRE ATT&CK</span>
+          <span class="chip">Incident Response</span><span class="chip">NIST CSF</span><span class="chip">ISO 27001</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-name">AI and Automation</div>
+        <div class="skill-chips">
+          <span class="chip">Anthropic Claude API</span><span class="chip">LLM Integration</span>
+          <span class="chip">SHAP Explainability</span><span class="chip">XGBoost</span>
+          <span class="chip">Isolation Forest</span><span class="chip">scikit-learn</span>
+          <span class="chip">Prompt Engineering</span><span class="chip">MCP</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-name">Offensive Security</div>
+        <div class="skill-chips">
+          <span class="chip">Burp Suite</span><span class="chip">Kali Linux</span>
+          <span class="chip">Metasploit</span><span class="chip">Nmap</span>
+          <span class="chip">Wireshark</span><span class="chip">OWASP ZAP</span>
+          <span class="chip">Penetration Testing</span><span class="chip">CVSS</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-name">Development</div>
+        <div class="skill-chips">
+          <span class="chip">Python</span><span class="chip">FastAPI</span>
+          <span class="chip">REST APIs</span><span class="chip">PostgreSQL</span>
+          <span class="chip">JWT / RBAC</span><span class="chip">Bash</span>
+          <span class="chip">PowerShell</span><span class="chip">Git</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="section-eyebrow" style="margin-top: 3rem;">Certifications</p>
+    <div class="certs-grid fade-in">
+      <div class="cert-card">
+        <div class="cert-dot" style="background: var(--accent);"></div>
+        <div>
+          <div class="cert-name">Claude 101, Claude Code 101, Intro to MCP</div>
+          <div class="cert-issuer">Anthropic // 2025</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-dot"></div>
+        <div>
+          <div class="cert-name">Tines SOAR Core and Advanced</div>
+          <div class="cert-issuer">Tines // 2024</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-dot"></div>
+        <div>
+          <div class="cert-name">Security Analyst Level 1 (SAL-1)</div>
+          <div class="cert-issuer">TryHackMe</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-dot" style="background: var(--accent2);"></div>
+        <div>
+          <div class="cert-name">Digitalisation in Aeronautics</div>
+          <div class="cert-issuer">Technical University of Munich // 2022</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <p class="section-eyebrow">05 / Contact</p>
+    <h2 class="section-title">Get In Touch</h2>
+    <div class="contact-grid fade-in">
+      <div class="contact-text">
+        <p>I am actively looking for roles in cybersecurity, SOC operations, AI security, and penetration testing. If you have something interesting, I want to hear about it.</p>
+        <p>I pick things up fast, work well in teams, and will make sure you feel good about hiring me. Let us talk.</p>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:sathwikkms@gmail.com" class="contact-link">
+          <span class="contact-link-label">Email</span>
+          <span class="contact-link-val">sathwikkms@gmail.com</span>
+        </a>
+        <a href="https://www.linkedin.com/in/sathwik-konijeti-9b05a7233" target="_blank" class="contact-link">
+          <span class="contact-link-label">LinkedIn</span>
+          <span class="contact-link-val">sathwik-konijeti-9b05a7233</span>
+        </a>
+        <a href="https://github.com/Sathwik-Konijeti" target="_blank" class="contact-link">
+          <span class="contact-link-label">GitHub</span>
+          <span class="contact-link-val">Sathwik-Konijeti</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>Built by Sathwik Konijeti // sathwik-konijeti.github.io</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(el => { if (el.isIntersecting) el.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
